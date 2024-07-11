@@ -13,30 +13,33 @@ public class LoginPage {
         PageFactory.initElements(rdriver, this);
     }
 
-    @FindBy(xpath = "//a[@href='https://www.naukrigulf.com/jobseeker/login']")
-    WebElement loginEle;
+    @FindBy(xpath = "//a[@href='https://magento.softwaretestingboard.com/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS8%2C/']")
+    WebElement SigninBtn;
 
-    @FindBy(xpath = "//input[@id='loginModalLoginEmail']")
+    @FindBy(xpath = "//input[@id='email']")
     WebElement userNameTxt;
 
-    @FindBy(xpath = "//input[@id='loginPassword']")
+    @FindBy(xpath = "//input[@name='login[password]']")
     WebElement passwordTxt;
 
-    @FindBy(xpath = "//button[@id='loginModalLoginSubmit']")
+    @FindBy(xpath = "(//button[@id='send2'])[1]")
     WebElement loginBtn;
 
-    public void clickLoginEle(){
-        loginEle.click();
+    public void clickSigninBtn(){
+        SigninBtn.click();
     }
 
     public void setUserName(String uname) {
+
         userNameTxt.sendKeys(uname);
     }
 
     public void setPassword(String pwd) {
+
         passwordTxt.sendKeys(pwd);
     }
     public void clickSubmit() {
+
         loginBtn.click();
     }
 }

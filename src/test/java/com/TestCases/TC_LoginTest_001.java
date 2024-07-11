@@ -9,11 +9,11 @@ public class TC_LoginTest_001 extends BaseClass {
     public void loginTest(){
         driver.get(baseURL);
         LoginPage lp = new LoginPage(driver);
-        lp.clickLoginEle();
+        lp.clickSigninBtn();
         lp.setUserName(username);
         lp.setPassword(password);
         lp.clickSubmit();
-        if(driver.getTitle().equals("Naukrigulf")){
+        if(driver.getTitle().equals("Home Page")){
             Assert.assertTrue(true);
         }
         else {
