@@ -1,7 +1,12 @@
 package com.TestCases;
 import com.Utilities.ReadConfig;
+import com.aventstack.extentreports.utils.FileUtil;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.log4j.PropertyConfigurator;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -11,6 +16,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 public class BaseClass {
@@ -40,6 +48,7 @@ public class BaseClass {
             System.setProperty("webdriver.edge.driver",readconfig.getEdgepath());
             driver =new EdgeDriver();
         }
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(baseURL);
         logger.info("URL is opened");
         }
@@ -47,5 +56,21 @@ public class BaseClass {
         @AfterClass
     public void tearDown(){
         driver.quit();
+    }
+
+    public  void captureScreenshot(WebDriver driver, String tname) throws IOException {
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        File source = ts.getScreenshotAs(OutputType.FILE);
+        File target = new File(System.getProperty("user.dir")+"/Screenshots/"+tname+".png");
+        FileUtils.copyFile(source, target);
+        System.out.println("screenshot taken");
+    }
+    public static String randomString(){
+        String genratedString = RandomStringUtils.randomAlphabetic(8);
+        return(genratedString);
+    }
+    public static String randomNum() {
+        String genratedNumber = RandomStringUtils.randomNumeric(6);
+        return (genratedNumber);
     }
 }
