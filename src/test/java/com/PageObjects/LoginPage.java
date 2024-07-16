@@ -15,22 +15,20 @@ public class LoginPage {
 
     @FindBy(xpath = "//a[@href='https://magento.softwaretestingboard.com/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS8%2C/']")
     WebElement SigninBtn;
-
     @FindBy(xpath = "//input[@id='email']")
     WebElement userNameTxt;
-
     @FindBy(xpath = "//input[@name='login[password]']")
     WebElement passwordTxt;
-
     @FindBy(xpath = "(//button[@id='send2'])[1]")
     WebElement loginBtn;
+    @FindBy(xpath = "")
+    WebElement logoutBtn;
 
     public void clickSigninBtn(){
         SigninBtn.click();
     }
 
     public void setUserName(String uname) {
-
         userNameTxt.sendKeys(uname);
     }
 
@@ -40,6 +38,9 @@ public class LoginPage {
     }
     public void clickSubmit() {
 
+        loginBtn.click();
+    }
+    public void clickLogout(){
         loginBtn.click();
     }
 }
